@@ -1,5 +1,6 @@
 class DiscussionsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_discussion, only: %i[edit update]
 
   def index
     @discussions = Discussion.all
@@ -17,7 +18,19 @@ class DiscussionsController < ApplicationController
       if @discussion.save
         format.html { redirect_to discussions_path, notice: 'Discussion was successfully created.' }
       else
-        flash[:alert] = 'Discussion could not be created.'
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @discussion.update(discussion_params)
+        format.html { redirect_to discussions_path, notice: 'Discussion was successfully updated.' }
+      else
         format.html { render :new, status: :unprocessable_entity }
       end
     end
@@ -27,5 +40,9 @@ class DiscussionsController < ApplicationController
 
   def discussion_params
     params.require(:discussion).permit(:name, :pinned, :closed)
+  end
+
+  def set_discussion
+    @discussion = Discussion.find(params[:id])
   end
 end
