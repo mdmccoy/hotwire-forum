@@ -1,0 +1,31 @@
+<%= form_with(model: discussion) do |f| %>
+  <% if discussion.errors.any? %>
+    <div id="error-explanation">
+      <h2><%= pluralize(discussion.errors.count, "error")%> prevented this from being saved:</h2>
+      <ul>
+        <% discussion.errors.full_messages.each do |message| %>
+          <li><%= message%></li>
+        <% end %>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= f.label :name, class: "form-label" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :pinned, class:"form-label" %>
+    <%= f.check_box :pinned, class: "form-check-input" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :closed, class:"form-label" %>
+    <%= f.check_box :closed, class: "form-check-input" %>
+  </div>
+
+  
+  <div>
+    <%= f.submit class:"btn btn-primary"%>
+  </div>
+<% end %>
