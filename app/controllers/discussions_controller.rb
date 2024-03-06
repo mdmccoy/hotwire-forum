@@ -1,6 +1,6 @@
 class DiscussionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_discussion, only: %i[edit update]
+  before_action :set_discussion, only: %i[edit update destroy]
 
   def index
     @discussions = Discussion.all
@@ -23,8 +23,7 @@ class DiscussionsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     respond_to do |format|
@@ -34,6 +33,11 @@ class DiscussionsController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
       end
     end
+  end
+
+  def destroy
+    @discussion.destroy!
+    redirect_to discussions_path, notice: 'Discussion was successfully destroyed.'
   end
 
   private
