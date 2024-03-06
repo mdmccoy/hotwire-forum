@@ -11,8 +11,9 @@
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
+    <%= render "shared/navbar" %>    
     <div class="container mt-4">
+      <%= render 'shared/flash' %>
       <%= yield %>
     </div>
   </body>
