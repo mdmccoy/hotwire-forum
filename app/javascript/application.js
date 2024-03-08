@@ -7,3 +7,5 @@ import "bootstrap/dist/css/bootstrap.min.css"
 Turbo.StreamActions.redirect = function () {
   Turbo.visit(this.target);
 };
+import "trix"
+import "@rails/actiontext"
