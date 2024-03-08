@@ -2,8 +2,10 @@
   <meta name="turbo-visit-control" content="reload">
 </head>
 
+<%= turbo_stream_from 'discussions' %>
+
 <div class="d-flex justify-content-between align-items-center">
-  <h1>Discussions</h1>
+  <h1>Discussions Index</h1>
   <%= link_to "New Discussion", new_discussion_path, class: "btn btn-primary" %>
 </div>
 
