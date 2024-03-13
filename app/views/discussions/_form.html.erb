@@ -24,6 +24,14 @@
     <%= f.check_box :closed, class: "form-check-input" %>
   </div>
 
+  <% if discussion.new_record? %>
+    <%= f.fields_for :posts do |p| %>
+      <div class="mb-3">
+        <%= p.rich_text_area :body, placeholder: "Start the discussion..." %>
+      </div>
+
+    <%end%>
+  <%end%>
   
   <div>
     <%= f.submit class:"btn btn-primary"%>
