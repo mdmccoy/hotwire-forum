@@ -1,3 +1,11 @@
 <h1> Discussion Show </h1>
 <%= turbo_stream_from @discussion %>
 <%= render "header", discussion: @discussion %>
+
+<hr class="my-4">
+
+<div id="<%= dom_id@post%>">
+  <%= render("discussions/posts/form", post: @post) %>
+</div>
+
+

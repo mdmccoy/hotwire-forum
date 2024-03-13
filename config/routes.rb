@@ -3,7 +3,9 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :discussions
+  resources :discussions do
+    resources :posts, only: %i[create destroy], module: :discussions
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   root to: 'main#index'
