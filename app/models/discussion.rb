@@ -17,3 +17,4 @@ class Discussion < ApplicationRecord
     "#{id}-#{name.downcase.to_s[0...20]}".parameterize
   end
 end
+ 

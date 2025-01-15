@@ -10,8 +10,11 @@ module Discussions
         if @post.save
           format.html { redirect_to @discussion }
         else
-          format.turbo_stream { render turbo_stream: turbo_stream.replace(@post, partial: "posts/form", locals: { post: @post }) }
-          format.html { render :new, status: :unprocessable_entity}
+          format.turbo_stream do
+            # This response can also be defined in <controller method name>.turbo_stream.erb
+            # render turbo_stream: turbo_stream.replace(@post, partial: 'discussions/posts/form', locals: { post: @post })
+          end
+          format.html { render :new, status: :unprocessable_entity }
         end
       end
     end
