@@ -10,6 +10,8 @@ class DiscussionsController < ApplicationController
   end
 
   def show
+    # TODO: Change this to @new_post so it's less confusing
+    @posts = @discussion.posts.all
     @post = @discussion.posts.new
   end
 
