@@ -3,6 +3,7 @@
 class DiscussionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_discussion, only: %i[edit update destroy show]
+  rescue_from ActiveRecord::RecordNotFound, with: -> { redirect_to discussions_path, notice: 'Discussion not found' }
 
   def index
     flash.keep if turbo_frame_request?

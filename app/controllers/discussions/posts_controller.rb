@@ -4,7 +4,7 @@ module Discussions
   class PostsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_discussion
-    before_action :set_post, only: %i[show edit update]
+    before_action :set_post, only: %i[show edit update destroy]
 
     def show; end
 
@@ -42,9 +42,12 @@ module Discussions
     end
 
     def destroy
-      @post = @discussion.posts.find(params[:id])
       @post.destroy
-      redirect_to @discussion
+
+      respond_to do |format|
+        # format.turbo_stream {}
+        format.html { redirect_to @post.discussion, notice: 'Post was successfully destroyed.' }
+      end
     end
 
     private
