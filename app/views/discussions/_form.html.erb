@@ -1,12 +1,6 @@
 <%= form_with(model: discussion) do |f| %>
-  <% if discussion.errors.any? %>
-    <div id="error-explanation">
-      <h2><%= pluralize(discussion.errors.count, "error")%> prevented this from being saved:</h2>
-      <ul>
-        <% discussion.errors.full_messages.each do |message| %>
-          <li><%= message%></li>
-        <% end %>
-    </div>
+  <% if discussion.errors.any? %>    
+    <%= render 'shared/errors', model: discussion %>
   <% end %>
 
   <div class="mb-3">
