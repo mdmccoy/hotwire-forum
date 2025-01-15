@@ -45,7 +45,7 @@ module Discussions
       @post.destroy
 
       respond_to do |format|
-        # format.turbo_stream {}
+        format.turbo_stream {} # rubocop:disable Lint/EmptyBlock
         format.html { redirect_to @post.discussion, notice: 'Post was successfully destroyed.' }
       end
     end
