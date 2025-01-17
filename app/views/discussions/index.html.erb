@@ -2,7 +2,11 @@
   <meta name="turbo-visit-control" content="reload">
 </head>
 
-<%= turbo_stream_from 'discussions' %>
+<% if @category %>
+  <%= turbo_stream_from @category %> 
+<% else %> 
+  <%= turbo_stream_from 'discussions' %>
+<% end %> 
 
 <div class="d-flex justify-content-between align-items-center">
   <h1>Discussions Index</h1>
@@ -14,12 +18,15 @@
     <h5>Categories</h5>
     <%= turbo_stream_from 'categories' %>
     <div class="categories">
-      <%= render Category.sorted %>
+      <%= render partial:'categories/category', collection: Category.sorted %>
     </div>
   </div>
   <div class="col">
+    <% if @category %>
+      <h4>Viewing discussions in <%= @category.name %></h4>
+    <% end %>
     <div id="discussions">
-      <%= render @discussions %>
+      <%= render partial: 'discussions/discussion', collection: @discussions %>
     </div>
   </div>
 </div>

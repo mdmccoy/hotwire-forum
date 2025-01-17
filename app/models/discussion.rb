@@ -16,6 +16,8 @@ class Discussion < ApplicationRecord
 
   delegate :name, prefix: :category, to: :category, allow_nil: true
 
+  broadcasts_to :category # , inserts_by: :prepend # this is the default behavior
+
   def to_param
     "#{id}-#{name.downcase.to_s[0...20]}".parameterize
   end
