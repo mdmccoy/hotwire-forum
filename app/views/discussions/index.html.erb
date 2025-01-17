@@ -10,6 +10,13 @@
 </div>
 
 <div class="row mt-4">
+  <div class="col-3">
+    <h5>Categories</h5>
+    <%= turbo_stream_from 'categories' %>
+    <div class="categories">
+      <%= render Category.sorted %>
+    </div>
+  </div>
   <div class="col">
     <div id="discussions">
       <%= render @discussions %>
