@@ -54,6 +54,13 @@ class DiscussionsController < ApplicationController
           new_category.reload.broadcast_replace_to('categories')
         end
 
+        if @discussion.saved_change_to_closed?
+          @discussion.broadcast_action_to(@discussion, action: :replace,
+                                                       target: 'new_post_form',
+                                                       partial: 'discussions/posts/form',
+                                                       locals: { post: @discussion.posts.new })
+        end
+
         format.html { redirect_to @discussion, notice: 'Discussion was successfully updated.' }
       else
         format.html { render :new, status: :unprocessable_entity }
