@@ -6,7 +6,7 @@ class Discussion < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :users, through: :posts
 
-  scope :pinned_first, -> { order(pinned: :desc).order(updated_at: :desc) }
+  scope :pinned_first, -> { order(pinned: :desc, updated_at: :desc) }
 
   validates :name, presence: true
 

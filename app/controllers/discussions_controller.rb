@@ -7,12 +7,12 @@ class DiscussionsController < ApplicationController
 
   def index
     flash.keep if turbo_frame_request?
-    @discussions = Discussion.order(updated_at: :desc)
+    @discussions = Discussion.pinned_first.includes([:category])
   end
 
   def show
     # TODO: Change this to @new_post so it's less confusing
-    @posts = @discussion.posts.all
+    @posts = @discussion.posts.includes(%i[user rich_text_body]).order(created_at: :asc)
     @post = @discussion.posts.new
   end
 
