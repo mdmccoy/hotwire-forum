@@ -7,7 +7,7 @@ class DiscussionsController < ApplicationController
 
   def index
     flash.keep if turbo_frame_request?
-    @discussions = Discussion.pinned_first.includes([:category])
+    @pagy, @discussions = pagy(Discussion.pinned_first.includes([:category]))
   end
 
   def show

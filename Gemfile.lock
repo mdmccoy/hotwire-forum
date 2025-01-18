@@ -155,6 +155,7 @@ GEM
     nokogiri (1.16.2-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (9.3.3)
     parallel (1.23.0)
     parser (3.2.2.4)
       ast (~> 2.4.1)
@@ -288,6 +289,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   jbuilder
   jsbundling-rails
+  pagy (~> 9.3)
   puma (~> 5.0)
   rails (~> 7.0.8, >= 7.0.8.1)
   rubocop-rails

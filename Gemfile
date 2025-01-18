@@ -83,3 +83,5 @@ gem 'devise', '~> 4.9'
 gem 'bootstrap'
 
 gem 'sassc-rails'
+
+gem "pagy", "~> 9.3"
