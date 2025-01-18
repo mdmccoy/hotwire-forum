@@ -9,6 +9,10 @@
         <%= render 'shared/errors', model: post %>
       <% end %>
 
+      <% if local_assigns[:redirect] %>
+        <%= form.hidden_field :redirect, value: true %>
+      <% end %>
+
       <div class="mb-3">
         <%= form.label :body %>
         <%= form.rich_text_area :body, placeholder: "Reply to this discussion...", autofocus: true %>
