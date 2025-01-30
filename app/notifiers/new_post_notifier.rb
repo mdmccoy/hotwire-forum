@@ -24,12 +24,17 @@ class NewPostNotifier < ApplicationNotifier
   #
   # required_param :message
   # required_param :record
+  #
+
+  def post
+    record
+  end
 
   def message
-    "New post in #{params[:post].discussion.name}"
+    "New post in #{post.discussion.name}"
   end
 
   def url
-    discussion_path(params[:post].discussion)
+    discussion_path(post.discussion)
   end
 end

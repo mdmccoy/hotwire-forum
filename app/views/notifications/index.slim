@@ -1,0 +1,16 @@
+div.d-flex.justify-content-between.align-items-center.mb-4
+  h1 Notifications
+  =button_to "Mark all as read", read_notifications_path, method: :post, class: "btn btn-primary"
+
+h3 What's new?
+
+- if @notifications.any?
+  = render partial: "notification", collection: @notifications
+- else 
+  div.mb-3 No new notifications
+  
+
+- if @previous_notifications.any?
+  h4 Previously Seen
+  div
+    =render partial: "notification", collection: @previous_notifications
