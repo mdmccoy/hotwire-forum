@@ -87,3 +87,5 @@ gem 'sassc-rails'
 gem 'pagy', '~> 9.3'
 
 gem 'slim-rails'
+
+gem "noticed", "~> 2.6"
