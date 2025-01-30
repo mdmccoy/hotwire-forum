@@ -84,4 +84,6 @@ gem 'bootstrap'
 
 gem 'sassc-rails'
 
-gem "pagy", "~> 9.3"
+gem 'pagy', '~> 9.3'
+
+gem 'slim-rails'

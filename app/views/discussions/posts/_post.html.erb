@@ -1,23 +1,23 @@
 <%= turbo_frame_tag dom_id(post) do %>
-<div id=<%= dom_id(post)%> class="card my-2" >
-  <div class="card-body">
-    <%= render partial: 'discussions/posts/header', locals: { post: post } %>
-    <%= post.body %>
+  <div id=<%= dom_id(post)%> class="card my-2" >
+    <div class="card-body">
+      <%= render partial: 'discussions/posts/header', locals: { post: post } %>
+      <%= post.body %>
+    </div>
+    <% if action_name.nil? %>
+      <%= turbo_frame_tag "post_actions", src: discussion_post_path(post.discussion, post) do %>
+        <div class="card-footer mt-2"></div>
+      <% end %>
+    <% else%>
+      <%= turbo_frame_tag "post_actions" do %>
+          <div class="card-footer mt-2">
+            <% if Current.user == post.user %>
+              <%= link_to "Edit", edit_discussion_post_path(post.discussion, post), data: { turbo_frame: dom_id(post)} %> |
+              <%= link_to 'Delete', discussion_post_path(post.discussion, post) , data: { "turbo-method": :delete } %>
+            <% end %>
+          </div>
+      <% end %>
+    <% end %>
   </div>
-   <% if action_name.nil? %>
-    <%= turbo_frame_tag "post_actions" do %>
-      <div class="card-footer mt-2"></div>
-    <% end %>
-   <% else%>
-    <%= turbo_frame_tag "post_actions" do %>
-        <div class="card-footer mt-2">
-          <% if Current.user == post.user %>
-            <%= link_to "Edit", edit_discussion_post_path(post.discussion, post), data: { turbo_frame: dom_id(post)} %> |
-            <%= link_to 'Delete', discussion_post_path(post.discussion, post) , data: { "turbo-method": :delete } %>
-          <% end %>
-        </div>
-    <% end %>
-  <% end %>
-</div>
 <% end %>
  

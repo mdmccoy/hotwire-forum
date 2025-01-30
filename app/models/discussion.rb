@@ -58,6 +58,32 @@ class Discussion < ApplicationRecord
     end
   end
 
+  def subscribed?(user)
+    return false if user.nil?
+
+    if (subscription = subscription_for(user))
+      subscription.subscription_type == 'optin'
+    else
+      posts.where(user_id: user.id).any?
+    end
+  end
+
+  def subscribed_reason(user)
+    return "You're not getting notifications from this thread" if user.nil?
+
+    if (subscription = subscription_for(user))
+      if subscription.subscription_type == 'optout'
+        "You've opted out of this discussion"
+      elsif subscription.subscription_type == 'optin'
+        "You're subscribed to this discussion"
+      end
+    elsif posts.where(user_id: user.id).any?
+      "You've posted in this discussion"
+    else
+      "You're not getting notifications from this thread"
+    end
+  end
+
   private
 
   def replace_headers
